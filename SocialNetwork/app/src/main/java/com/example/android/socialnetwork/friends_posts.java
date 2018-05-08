@@ -11,6 +11,7 @@ import com.example.android.socialnetwork.packagefordb.UserHelper;
 import com.example.android.socialnetwork.packagefordb.usercontract;
 import com.example.android.socialnetwork.packagefordb.usercontract.userEntry;
 import com.example.android.socialnetwork.packagefordb.usercontract.PostEntry;
+import com.example.android.socialnetwork.post ;
 
 import java.util.ArrayList;
 
@@ -47,7 +48,7 @@ public class friends_posts extends AppCompatActivity {
         // Parse friends strings to extract ids of user friends
         String []friends_list = friends.split(",");
 
-        ArrayList<String>all_posts = new ArrayList<>();
+        ArrayList<post>all_posts = new ArrayList<>();
 
         for(String s : friends_list){
             // loop where friends_list[i] will be in s and so on
@@ -57,9 +58,26 @@ public class friends_posts extends AppCompatActivity {
             // the ArrayList all_posts then to arrayadapter then show on screen
             PostHelper postHelper = new PostHelper(this);
             SQLiteDatabase sqLiteDatabase = postHelper.getReadableDatabase() ;
-
+            String[] projection ={PostEntry.COULMN_POST , PostEntry.COLUMN_likes , PostEntry.COULMN_userid , PostEntry.COLUMN_postid} ;
+            String selection = PostEntry.COULMN_userid+" =?" ;
+            String[] selectionargs = {s} ;
+            Cursor pointer_to_post = sqLiteDatabase.query(PostEntry.TABLE_NAME , projection , selection , selectionargs ,
+                    null,null,null) ;
+            // Loop on all posts from that user
+            pointer_to_post.moveToFirst();
+            int i = 0 ;
+            while(i<pointer_to_post.getCount()){
+                String post_body = pointer_to_post.getString(pointer_to_post.getColumnIndex(PostEntry.COULMN_POST)) ;
+                int id_user = pointer_to_post.getInt(pointer_to_post.getColumnIndex(PostEntry.COULMN_userid)) ;
+                int post_no = pointer_to_post.getInt(pointer_to_post.getColumnIndex(PostEntry.COLUMN_postid)) ;
+                int no_likes = pointer_to_post.getInt(pointer_to_post.getColumnIndex(PostEntry.COLUMN_likes)) ;
+                post ThePost = new post(post_body , no_likes , post_no , id_user) ;
+                all_posts.add(ThePost);
+                i++;pointer_to_post.moveToNext();
+            }
 
         }
+        // By the end of this loop we will have added all posts of user friends to all_posts
     }
 
 }

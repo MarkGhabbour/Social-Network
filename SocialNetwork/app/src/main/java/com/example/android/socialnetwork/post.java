@@ -10,10 +10,29 @@ public class post {
     String content;
     int no_likes;
     Vector<user>liked;
+    int id_of_the_post;
+    int id_of_the_user;
 
     public post(){
         content = "";
         no_likes = -1;
+        id_of_the_user=-1;
+        id_of_the_post=-1;
+    }
+
+    public post(String content, int no_likes, Vector<user> liked, int id_of_the_post, int id_of_the_user) {
+        this.content = content;
+        this.no_likes = no_likes;
+        this.liked = liked;
+        this.id_of_the_post = id_of_the_post;
+        this.id_of_the_user = id_of_the_user;
+    }
+
+    public post(String content , int no_likes , int id_of_the_post , int id_of_the_user){
+        this.content=content;
+        this.no_likes=no_likes;
+        this.id_of_the_post = id_of_the_post;
+        this.id_of_the_user = id_of_the_user;
     }
 
     public String getContent() {
