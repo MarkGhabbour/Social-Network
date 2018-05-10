@@ -14,6 +14,7 @@ import com.example.android.socialnetwork.packagefordb.usercontract.PostEntry;
 import com.example.android.socialnetwork.post ;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class friends_posts extends AppCompatActivity {
 
@@ -35,31 +36,36 @@ public class friends_posts extends AppCompatActivity {
 
 
     public void show_posts(){
+
+        String id_of_this_user = String.valueOf(signup.id) ;
+
         UserHelper userHelper = new UserHelper(this) ;
         SQLiteDatabase ins = userHelper.getReadableDatabase();
         String[] proj ={userEntry._ID , userEntry.COULMN_UserName , userEntry.COULMN_friends, userEntry.COULMN_number_friends
                 ,userEntry.COULMN_password};
-        Cursor c = ins.query(usercontract.userEntry.TABLE_NAME , proj , null,null,null,null,null ) ;
-        c.moveToLast() ;
+        String selection1 = userEntry._ID+"=?" ;
+        String [] selargs1  =new String[]{id_of_this_user} ;
+
+        Cursor c = ins.query(usercontract.userEntry.TABLE_NAME , proj , selection1,selargs1,null,null,null ) ;
         String friends = c.getString(c.getColumnIndex(userEntry.COULMN_friends)) ;
 
-        String sel = "=?" ;
-        String selargs[] ;
+
         // Parse friends strings to extract ids of user friends
         String []friends_list = friends.split(",");
 
-        ArrayList<post>all_posts = new ArrayList<>();
+        ArrayList<post>all_posts = new ArrayList<>(); // ArrayList which will be passed to ArrayAdapter
 
         for(String s : friends_list){
             // loop where friends_list[i] will be in s and so on
             int id_of_user_friend = Integer.parseInt(s) ;
-            selargs = new String[]{String.valueOf(id_of_user_friend)} ;
+
+           String [] selargs2 = new String[]{String.valueOf(id_of_user_friend)} ;
             // Then Search the post tablr for the id of that friend and get the post then push it into
             // the ArrayList all_posts then to arrayadapter then show on screen
             PostHelper postHelper = new PostHelper(this);
             SQLiteDatabase sqLiteDatabase = postHelper.getReadableDatabase() ;
             String[] projection ={PostEntry.COULMN_POST , PostEntry.COLUMN_likes , PostEntry.COULMN_userid , PostEntry.COLUMN_postid} ;
-            String selection = PostEntry.COULMN_userid+" =?" ;
+            String selection = PostEntry.COULMN_userid+"=?" ;
             String[] selectionargs = {s} ;
             Cursor pointer_to_post = sqLiteDatabase.query(PostEntry.TABLE_NAME , projection , selection , selectionargs ,
                     null,null,null) ;
@@ -78,6 +84,10 @@ public class friends_posts extends AppCompatActivity {
 
         }
         // By the end of this loop we will have added all posts of user friends to all_posts
+        //Arrange posts from newest to oldest
+
+        Collections.sort(all_posts , new PostArrange());
+
     }
 
 }

@@ -1,5 +1,6 @@
 package com.example.android.socialnetwork;
 
+import java.util.Comparator;
 import java.util.Vector;
 
 /**
@@ -58,4 +59,6 @@ public class post {
     public void setLiked(Vector<user> liked) {
         this.liked = liked;
     }
+
+
 }
