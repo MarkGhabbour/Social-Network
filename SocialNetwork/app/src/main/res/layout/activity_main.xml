@@ -13,8 +13,8 @@
     <ImageView
         android:id="@+id/welcomeImage"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:src="@drawable/reddit"
+        android:layout_height="256dp"
+        android:src="@drawable/technorati"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"/>
 
@@ -26,8 +26,8 @@
             android:fontFamily="cursive"
             android:text="Welcome"
             android:textAlignment="center"
-            android:textAllCaps="false"
-            android:textColor="#d70001"
+            android:textAllCaps="true"
+            android:textColor="#e14d49"
             android:textSize="70dp"
             android:textStyle="bold" />
 
@@ -63,6 +63,7 @@
             android:background="@drawable/my_button_bg"
             android:padding="8dp"
             android:text="Log in"
+            android:onClick="gotoLogin"
             android:textAlignment="center"
             android:textColor="#FFF"
             android:textSize="25sp" />

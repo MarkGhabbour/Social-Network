@@ -45,47 +45,21 @@
             android:hint="Enter Password"
             android:id="@+id/password"
             />
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Reenter Password"
-            android:id="@+id/repeat_password"
-            />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="10dp"
-            android:layout_alignBottom="@id/main">
 
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:text="Male"
-                android:textSize="20sp"
-                android:id="@+id/Male"/>
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:text="Female"
-                android:textSize="20sp"
-                android:id="@+id/Female"/>
-        </LinearLayout>
+
     </LinearLayout>
 
 
 
 
     <Button
-        android:id="@+id/sign_up"
+        android:id="@+id/log_in"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:text="Sign Up"
+        android:text="Log in"
         android:textSize="18sp"
         android:textAllCaps="false"
         android:layout_margin="20dp"
