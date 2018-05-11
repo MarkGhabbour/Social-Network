@@ -14,6 +14,8 @@ public class personal_page extends AppCompatActivity {
     }
 
 
+
+
     /* WE will rake an integer which is the id of the user to determine
         which personal page we will open   */
 
@@ -21,6 +23,15 @@ public class personal_page extends AppCompatActivity {
 
     public static int this_user_id = signup.id ;
     public static String user2 = signup.user ;
+
+
+
+    public void show_my_wall(View view){
+        Intent intent  = new Intent(this, my_wall.class)  ;
+        startActivity(intent);
+    }
+
+
 
     public void view_friends_posts(View view){
 

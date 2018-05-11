@@ -47,6 +47,7 @@
             android:textAllCaps="false"
             android:background="#18ffff"
             android:layout_margin="16sp"
+            android:onClick="show_my_wall"
             />
     </LinearLayout>
 

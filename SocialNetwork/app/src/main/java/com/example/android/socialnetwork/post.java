@@ -36,6 +36,11 @@ public class post {
         this.id_of_the_user = id_of_the_user;
     }
 
+    public post(String content , int no_likes ){
+        this.content = content ;
+        this.no_likes = no_likes ;
+    }
+
     public String getContent() {
         return content;
     }
