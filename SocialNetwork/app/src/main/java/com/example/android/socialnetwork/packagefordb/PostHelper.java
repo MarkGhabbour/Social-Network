@@ -21,7 +21,7 @@ public class PostHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         String SQL_Create_post_table = "CREATE TABLE "+PostEntry.TABLE_NAME + "("
-                +PostEntry.COLUMN_postid + " INTEGER AUTOINCREMENT ," +
+                +PostEntry.COLUMN_postid + " INTEGER PRIMARY KEY AUTOINCREMENT ," +
                 PostEntry.COULMN_userid + " INTEGER , " +
                 PostEntry.COLUMN_likes + " INTEGER , " +
                 PostEntry.COULMN_POST + " TEXT "

@@ -16,11 +16,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".signup" android:label="Sign Up" />
-        <activity android:name=".personal_page" android:label="Profile" />
-        <activity android:name=".friends_posts" android:label="Friend's posts"></activity>
-        <activity android:name=".Login" android:label="Log In"/>
-        <activity android:name=".writepost" android:label="Write a post"/>
+        <activity
+            android:name=".signup"
+            android:label="Sign Up" />
+        <activity
+            android:name=".personal_page"
+            android:label="Profile" />
+        <activity
+            android:name=".friends_posts"
+            android:label="Friend&apos;s posts" />
+        <activity
+            android:name=".Login"
+            android:label="Log In" />
+        <activity
+            android:name=".writepost"
+            android:label="Write a post" />
     </application>
 
 </manifest>

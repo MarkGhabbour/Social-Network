@@ -41,7 +41,7 @@ public class writepost extends AppCompatActivity {
         //Now display a toast message and return automatically to personal_page file
 
         Context context = getApplicationContext();
-        CharSequence text = "Hello toast!";
+        CharSequence text = "The post is added to your Timeline";
         int duration = Toast.LENGTH_LONG;
         Toast toast = Toast.makeText(context, text, duration);
         toast.show();

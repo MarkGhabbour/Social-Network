@@ -63,7 +63,7 @@
         android:textSize="18sp"
         android:textAllCaps="false"
         android:layout_margin="20dp"
-        android:onClick="save"
+        android:onClick="log_in2"
         android:background="@color/colorPrimary"
         android:textColor="#FFF"
 
