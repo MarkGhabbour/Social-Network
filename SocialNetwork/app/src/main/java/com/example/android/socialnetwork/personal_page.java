@@ -29,4 +29,11 @@ public class personal_page extends AppCompatActivity {
         startActivity(intent);
     }
 
+
+    public void WritePost (View view){
+        Intent intent = new Intent(this , writepost.class) ;
+        startActivity(intent);
+    }
+
+
 }
