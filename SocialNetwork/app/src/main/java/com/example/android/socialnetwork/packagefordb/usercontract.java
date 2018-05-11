@@ -53,7 +53,7 @@ public final class usercontract {
         public static final String TABLE_NAME = "posts";
 
         public static final String COULMN_userid = "userid";
-        public static final String COLUMN_postid="postid"; // id of the post related to the user
+        public static final String COLUMN_postid="postid"; // id of the post related to the user (Primary key)
         public static final String COLUMN_likes="likes";
         public static final String COULMN_POST = "Body";
     }

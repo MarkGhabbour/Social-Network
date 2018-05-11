@@ -1,5 +1,6 @@
 package com.example.android.socialnetwork.packagefordb;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -49,6 +50,19 @@ public class UserHelper extends SQLiteOpenHelper {
         @Override
         public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
 
+        }
+
+        public boolean insertUser(String username,int noOfFriends , String friends , String password)
+        {
+            SQLiteDatabase userdb = this.getWritableDatabase();
+            ContentValues contentvalues = new ContentValues();
+            contentvalues.put(userEntry.COULMN_UserName,username);
+            contentvalues.put(userEntry.COULMN_number_friends,noOfFriends);
+            contentvalues.put(userEntry.COULMN_friends,friends);
+            contentvalues.put(userEntry.COULMN_password,password);
+            long result = userdb.insert(userEntry.TABLE_NAME,null,contentvalues);
+            if(result == -1) return false;
+            else return true;
         }
     }
 

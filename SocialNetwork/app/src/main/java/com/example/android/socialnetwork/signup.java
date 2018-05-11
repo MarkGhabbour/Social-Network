@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.example.android.socialnetwork.packagefordb.UserHelper;
@@ -20,7 +21,7 @@ public class signup extends AppCompatActivity {
 
 
 
-    private UserHelper userHelper ;
+    private UserHelper userDb ;
 
     // Identify the 2 checkboxes of male and female in activity_signup//
 
@@ -32,6 +33,7 @@ public class signup extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
+        userDb = new UserHelper(this);
     }
 
     // This id we will use to get info about this user ready when navigate to personal_page
@@ -43,50 +45,42 @@ public class signup extends AppCompatActivity {
     /* function navigates into personal page after signing up */
 
     public void save(View view){
-
-        UserHelper userHelper = new UserHelper(this) ;
-
-        SQLiteDatabase ins = userHelper.getWritableDatabase();
-
         EditText name = (EditText)findViewById(R.id.username);
         EditText pass = (EditText)findViewById(R.id.password);
+        EditText repass = (EditText)findViewById(R.id.repeat_password);
 
         String name2 = name.getText().toString() ;
         String pass2 =  pass.getText().toString();
-
-        ContentValues c = new ContentValues();
+        String passChecker = repass.getText().toString();
+        boolean isInserted = false;
 
         // Filling the table //
+        if(name2.equals("") || pass2.equals("") || !(pass2.equals(passChecker)))
+        {
+            Toast.makeText(this,"Please fill in your data correctly",Toast.LENGTH_LONG).show();
+        }
+        else
+            isInserted = userDb.insertUser(name2,0,"",pass2);
 
-        c.put(userEntry.COULMN_UserName, name2 );
-        c.put(userEntry.COULMN_password , pass2);
-        c.put(userEntry.COULMN_number_friends , 0);
-        c.put(userEntry.COULMN_friends , "11,12,13");
+        SQLiteDatabase ins = userDb.getWritableDatabase();
 
-       long make_sure_data_is_entered =  ins.insert(userEntry.TABLE_NAME , null , c) ;
-
-
-
-        String[] projection ={userEntry._ID , userEntry.COULMN_UserName , userEntry.COULMN_friends, userEntry.COULMN_number_friends
-                ,userEntry.COULMN_password};
-
-        Cursor z = ins.query(userEntry.TABLE_NAME  ,
-                projection , null ,null ,
-                null,null,null ) ;
+        Cursor z = ins.rawQuery("select * from "+userEntry.TABLE_NAME,null);
         int count = z.getCount();
         // To move the cursor to the last row which contains the info we just inserted
         z.moveToLast();
 
-            id = z.getInt(z.getColumnIndex(userEntry._ID));
-            user = z.getString(z.getColumnIndex(userEntry.COULMN_UserName));
+        id = z.getInt(z.getColumnIndex(userEntry._ID));
+        user = z.getString(z.getColumnIndex(userEntry.COULMN_UserName));
 
 
 
 
        // Next window will open
         Intent personal_page = new Intent(this,personal_page.class);
-
-        startActivity(personal_page);
+        if(isInserted) {
+            Toast.makeText(this, "Data inserted", Toast.LENGTH_LONG).show();
+            startActivity(personal_page);
+        }
 
 
 

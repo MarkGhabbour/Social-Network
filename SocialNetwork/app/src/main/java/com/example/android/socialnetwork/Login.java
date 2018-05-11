@@ -49,6 +49,8 @@ public class Login extends AppCompatActivity {
 
         // update signup.id global variable
         signup.id = c.getInt(c.getColumnIndex(userEntry._ID)) ;
+        Intent n = new Intent(this,personal_page.class);
+        startActivity(n);
 
     }
 }
