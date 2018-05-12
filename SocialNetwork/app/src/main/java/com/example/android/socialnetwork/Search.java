@@ -1,5 +1,6 @@
 package com.example.android.socialnetwork;
 
+import com.example.android.socialnetwork.queue;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -16,7 +17,9 @@ import java.util.Iterator;
 import java.util.Queue;
 import java.util.Vector;
 
-public class Search extends AppCompatActivity {
+import static java.lang.Integer.parseInt;
+
+public final class Search extends AppCompatActivity {
 
 
 
@@ -43,128 +46,39 @@ public class Search extends AppCompatActivity {
         for(int i=0; i<c.getCount(); i++)
             visited.add(i,false);
 
-        Vector<user> users = new Vector<>();
+//        Vector<user> users = new Vector<>();
+//
+//        //this code needs each user to have an id attribue which i added
+//        //added an id attribute to each user it needs to build users vector, in which users are added from cursor to vector
+//        //and adding each user friends in it
+//
+//        for(int i=0; i<c.getCount(); i++)
+//        {
+//            user tmpUser = new user();
+//            tmpUser = users.get(i);
+//
+//            for (int j = 0; j <tmpUser.getFriends().size(); j++)
+//            {
+//                user tmpUser2 = new user();
+//                tmpUser2= tmpUser.getFriends().get(j);
+//                int tmp_id = tmpUser2.get_Id();
+//                adjList.get(j).add(tmp_id);
+//
+//            }
+//
+//        }
 
-        //this code needs each user to have an id attribue which i added
-        //added an id attribute to each user it needs to build users vector, in which users are added from cursor to vector
-        //and adding each user friends in it
+        getAdjList(c, adjList);
 
-        for(int i=0; i<c.getCount(); i++)
-        {
-            user tmpUser = new user();
-            tmpUser = users.get(i);
+        queue  toBeVisited = new queue () ;
 
-            for (int j = 0; j <tmpUser.getFriends().size(); j++)
-            {
-                user tmpUser2 = new user();
-                tmpUser2= tmpUser.getFriends().get(j);
-                int tmp_id = tmpUser2.get_Id();
-                adjList.get(j).add(tmp_id);
 
-            }
-
-        }
-        Queue<Integer> toBeVisited = new Queue<Integer>() {
-            @Override
-            public boolean add(Integer integer) {
-                return false;
-            }
-
-            @Override
-            public boolean offer(Integer integer) {
-                return false;
-            }
-
-            @Override
-            public Integer remove() {
-                return null;
-            }
-
-            @Override
-            public Integer poll() {
-                return null;
-            }
-
-            @Override
-            public Integer element() {
-                return null;
-            }
-
-            @Override
-            public Integer peek() {
-                return null;
-            }
-
-            @Override
-            public int size() {
-                return 0;
-            }
-
-            @Override
-            public boolean isEmpty() {
-                return false;
-            }
-
-            @Override
-            public boolean contains(Object o) {
-                return false;
-            }
-
-            @NonNull
-            @Override
-            public Iterator<Integer> iterator() {
-                return null;
-            }
-
-            @NonNull
-            @Override
-            public Object[] toArray() {
-                return new Object[0];
-            }
-
-            @NonNull
-            @Override
-            public <T> T[] toArray(@NonNull T[] ts) {
-                return null;
-            }
-
-            @Override
-            public boolean remove(Object o) {
-                return false;
-            }
-
-            @Override
-            public boolean containsAll(@NonNull Collection<?> collection) {
-                return false;
-            }
-
-            @Override
-            public boolean addAll(@NonNull Collection<? extends Integer> collection) {
-                return false;
-            }
-
-            @Override
-            public boolean removeAll(@NonNull Collection<?> collection) {
-                return false;
-            }
-
-            @Override
-            public boolean retainAll(@NonNull Collection<?> collection) {
-                return false;
-            }
-
-            @Override
-            public void clear() {
-
-            }
-        };
-
-        toBeVisited.add(me._Id);
+        toBeVisited.enqueue(me._Id);
 
 
         while(!toBeVisited.isEmpty())
         {
-            int current_node= toBeVisited.remove() ;
+            int current_node= toBeVisited.dequeue() ;
 
 
             for (int i=0; i<  adjList.get(current_node).size();  i++)
@@ -173,19 +87,38 @@ public class Search extends AppCompatActivity {
                 if (visited.get(index)==false)
                 {
                     visited.set(index, true);
-                    toBeVisited.add(i);
+                    toBeVisited.enqueue(i);
                 }
-
             }
-
-
-
         }
-
-
 
 
         return result;
     }
+
+private void getAdjList(Cursor c,  Vector<ArrayList<Integer>> adjList )
+{
+
+       int count = c.getCount();
+
+        String s = new String();
+
+        for(int i=0; i<count; i++)
+        {
+            int id= c.getInt(c.getColumnIndex(userEntry._ID));
+            s= getString(c.getColumnIndex(userEntry.COULMN_friends ));
+            int no_friends = c.getInt(c.getColumnIndex(userEntry.COULMN_number_friends));
+            String[] parts = s.split(",");
+
+            for(int j=0; j<no_friends; j++)
+            {
+                int friend_Id = parseInt(parts[j]);
+                adjList.get(i).add(friend_Id);
+            }
+
+            c.moveToNext();
+        }
+  }
+
 
 }
