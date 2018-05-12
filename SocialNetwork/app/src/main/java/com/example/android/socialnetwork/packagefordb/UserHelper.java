@@ -38,7 +38,7 @@ public class UserHelper extends SQLiteOpenHelper {
             String SQL_CREATE_USER_TABLE =
                     "CREATE TABLE "+ userEntry.TABLE_NAME + "(" +
                             userEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT ," +
-                            userEntry.COULMN_UserName + " TEXT ,"
+                            userEntry.COULMN_UserName + " TEXT UNIQUE  ,"
                             +userEntry.COULMN_number_friends + " INTEGER ,"
                             + userEntry.COULMN_friends + " TEXT , " +
                             userEntry.COULMN_password + " TEXT  "+

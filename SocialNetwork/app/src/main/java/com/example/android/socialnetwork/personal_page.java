@@ -65,4 +65,10 @@ public class personal_page extends AppCompatActivity {
         builder.setMessage(Message);
         builder.show();
     }
+
+    public void gotoWall(View view)
+    {
+        Intent n = new Intent(this,myWall.class);
+        startActivity(n);
+    }
 }

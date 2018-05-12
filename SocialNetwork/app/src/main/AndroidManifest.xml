@@ -21,6 +21,7 @@
         <activity android:name=".friends_posts" android:label="Friend's posts"></activity>
         <activity android:name=".Login" android:label="Log In"/>
         <activity android:name=".writepost" android:label="Write a post"/>
+        <activity android:name=".myWall" android:label="My Posts"/>
     </application>
 
 </manifest>
