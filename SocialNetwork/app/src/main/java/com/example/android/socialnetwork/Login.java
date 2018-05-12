@@ -48,6 +48,7 @@ public class Login extends AppCompatActivity {
         Cursor c = ins.query(userEntry.TABLE_NAME , projection , selection , selectionargs , null , null , null , null);
         c.moveToFirst();
         signup.id = c.getInt(c.getColumnIndex(userEntry._ID)) ;
+        //personal_page.this_user_id = c.getInt(c.getColumnIndex(userEntry._ID)) ;
 
 
         // update signup.id global variable

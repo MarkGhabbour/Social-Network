@@ -22,9 +22,11 @@ public class UserAdapter extends ArrayAdapter<user> {
         // get references.
         user singleUser = getItem(position);
         TextView itemText = (TextView) customView.findViewById(R.id.item_text);
+        TextView smallItemText = (TextView) customView.findViewById(R.id.item_small_text);
         ImageView buckysImage = (ImageView) customView.findViewById(R.id.my_profile_image);
         // dynamically update the text from the array
         itemText.setText(singleUser.name);
+        smallItemText.setText("Has "+singleUser.no_of_friends+" friends");
         // using the same image every time
         buckysImage.setImageResource(R.drawable.icons8_account_96);
         // Now we can finally return our custom View or custom item

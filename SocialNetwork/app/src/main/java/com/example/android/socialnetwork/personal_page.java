@@ -13,16 +13,18 @@ import com.example.android.socialnetwork.packagefordb.usercontract.userEntry;
 public class personal_page extends AppCompatActivity {
 
     private UserHelper userDb;
+    public static int this_user_id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personal_page);
+        this_user_id = signup.id ;
         userDb = new UserHelper(this);
     }
 
     /* WE will rake an integer which is the id of the user to determine
     which personal page we will open   */
-    public static int this_user_id = signup.id ;
+
     public static String user2 = signup.user ;
 
 
@@ -41,8 +43,12 @@ public class personal_page extends AppCompatActivity {
     public void viewInfo(View view)
     {
         SQLiteDatabase info = userDb.getReadableDatabase();
-        Cursor res = info.rawQuery("Select * from "+ userEntry.TABLE_NAME,null);
-        res.moveToLast();
+        String [] projection = { userEntry._ID,userEntry.COULMN_UserName,userEntry.COULMN_password,userEntry.COULMN_number_friends,userEntry.COULMN_friends};
+        String selection = userEntry._ID+"= ?" ;
+        String id = String.valueOf(personal_page.this_user_id);
+        String [] selectionargs = {id} ;
+        Cursor res = info.query(userEntry.TABLE_NAME , projection , selection , selectionargs , null , null , null , null);
+        res.moveToFirst();
         if(res.getCount()==0){
             showMessage("Error","Nothing found");
             return;

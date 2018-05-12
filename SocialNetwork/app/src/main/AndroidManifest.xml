@@ -22,6 +22,7 @@
         <activity android:name=".Login" android:label="Log In"/>
         <activity android:name=".writepost" android:label="Write a post"/>
         <activity android:name=".myWall" android:label="My Posts"/>
+        <activity android:name=".admin" android:label="Registered Users"/>
     </application>
 
 </manifest>

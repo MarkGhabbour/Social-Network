@@ -37,6 +37,11 @@ public class MainActivity extends AppCompatActivity {
         Intent n  = new Intent(this,Login.class);
         startActivity(n);
     }
+    public void gotoAdmin(View view)
+    {
+        Intent n = new Intent(this,admin.class);
+        startActivity(n);
+    }
 
 
 }

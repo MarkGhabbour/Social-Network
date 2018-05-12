@@ -59,15 +59,15 @@ public class myWall extends AppCompatActivity {
         ListAdapter customListAdapter = new PostAdapter(this,my_posts);// Pass the array to the constructor.
         ListView customListView = (ListView) findViewById(R.id.wall_list_view);
         customListView.setAdapter(customListAdapter);
-        customListView.setOnItemClickListener(
-                new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        String postBody = String.valueOf(parent.getItemAtPosition(position));
-                        Toast.makeText(myWall.this, postBody, Toast.LENGTH_LONG).show();
-                    }
-                }
-        );
+        //customListView.setOnItemClickListener(
+          //      new AdapterView.OnItemClickListener() {
+            //        @Override
+              //      public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //        String postBody = String.valueOf(parent.getItemAtPosition(position));
+                  //      Toast.makeText(myWall.this, postBody, Toast.LENGTH_LONG).show();
+            //        }
+          //      }
+        //);
     }
 
 

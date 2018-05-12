@@ -23,9 +23,11 @@ public class PostAdapter extends ArrayAdapter<post> {
         // get references.
         post singlePost = getItem(position);
         TextView itemText = (TextView) customView.findViewById(R.id.item_text);
+        TextView smallItemText = (TextView) customView.findViewById(R.id.item_small_text);
         ImageView buckysImage = (ImageView) customView.findViewById(R.id.my_profile_image);
         // dynamically update the text from the array
         itemText.setText(singlePost.content);
+        smallItemText.setText("");
         // using the same image every time
         buckysImage.setImageResource(R.drawable.icons8_account_96);
         // Now we can finally return our custom View or custom item
