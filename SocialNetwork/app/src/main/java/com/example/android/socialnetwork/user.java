@@ -8,6 +8,7 @@ import java.util.Vector;
 
 public class user {
     String name;
+    int _Id;
     Vector<user>friends;
     Vector<post>posts;
     int no_of_friends ;
@@ -29,6 +30,13 @@ public class user {
             return posts.get(no);
     }
 
+    public int get_Id() {
+        return _Id;
+    }
+
+    public void set_Id(int _Id) {
+        this._Id = _Id;
+    }
 
     public user get_specific_friend(int no){
         return friends.get(no);
