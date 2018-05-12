@@ -10,9 +10,14 @@ public class user {
     String name;
     Vector<user>friends;
     Vector<post>posts;
-
+    int no_of_friends ;
     public String getName() {
         return name;
+    }
+
+    public user (String name , int n){
+        this.name = name ;
+        this . no_of_friends = n ;
     }
 
     public post get_specific_post(int no){

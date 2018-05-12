@@ -31,7 +31,8 @@
         <activity
             android:name=".writepost"
             android:label="Write a post" />
-        <activity android:name=".my_wall"></activity>
+        <activity android:name=".my_wall" />
+        <activity android:name=".admin"></activity>
     </application>
 
 </manifest>
