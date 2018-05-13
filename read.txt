@@ -1,1 +1,18 @@
-social media
+
+
+from main_activity :  
+
+admin  ->  admin.java  ->  when press on a user  ->  user_page_in_admin_mode  ->   if press delete user  ->  delete and get back  
+
+else -> user_wall_for_admin.java  ->  then select specific post to delete
+
+
+
+form personal_page : 
+
+Search  ->  search_name  enter name you want to search for  ->  specific_names.java  it lists all users of names matched name user searched for 
+
+
+Mark :  
+
+implement OnItemClickListener which when press on user passes it's position in ArrayList as argument position (this function should allow user to add name he searched for as a friend ) 
