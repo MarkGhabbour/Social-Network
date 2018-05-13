@@ -6,7 +6,10 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+<<<<<<< HEAD
 import android.util.Log;
+=======
+>>>>>>> c736f16dfdb68b298a7749dee756b6b329b0a132
 
 import com.example.android.socialnetwork.packagefordb.UserHelper;
 import com.example.android.socialnetwork.packagefordb.usercontract.userEntry;
@@ -39,11 +42,15 @@ public final class Search extends AppCompatActivity {
 
         UserHelper userHelper = new UserHelper(context);
         SQLiteDatabase ins = userHelper.getReadableDatabase();
+<<<<<<< HEAD
 
+=======
+>>>>>>> c736f16dfdb68b298a7749dee756b6b329b0a132
         Cursor c = ins.query(userEntry.TABLE_NAME, projection, null,
                 null, null, null, "ASC", null);
         c.moveToFirst();
 
+<<<<<<< HEAD
 
 
         Vector<Boolean> visited = new Vector<>(  c .getCount());
@@ -53,6 +60,12 @@ public final class Search extends AppCompatActivity {
 
         }
 
+=======
+        Vector<Boolean> visited = new Vector<>(  c .getCount());
+        for(int i=0; i<c.getCount(); i++)
+            visited.add(i,false);
+
+>>>>>>> c736f16dfdb68b298a7749dee756b6b329b0a132
 //        Vector<user> users = new Vector<>();
 //
 //        //this code needs each user to have an id attribue which i added
@@ -77,6 +90,7 @@ public final class Search extends AppCompatActivity {
 
         getAdjList(c, adjList);
 
+<<<<<<< HEAD
         for(int i=0; i<adjList.size(); i++){
 
             for(int j=0; j< adjList.get(i).size(); j++){
@@ -85,6 +99,8 @@ public final class Search extends AppCompatActivity {
 
         }
 
+=======
+>>>>>>> c736f16dfdb68b298a7749dee756b6b329b0a132
         queue  toBeVisited = new queue () ;
 
 
