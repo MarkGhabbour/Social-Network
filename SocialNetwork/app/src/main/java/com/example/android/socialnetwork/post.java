@@ -14,8 +14,17 @@ public class post {
     int id_of_the_post;
     int id_of_the_user;
 
+    public int getId_of_the_post() {
+        return id_of_the_post;
+    }
+
+    public void setId_of_the_post(int id_of_the_post) {
+        this.id_of_the_post = id_of_the_post;
+    }
+
     public post(){
         content = "";
+
         no_likes = -1;
         id_of_the_user=-1;
         id_of_the_post=-1;
@@ -36,10 +45,12 @@ public class post {
         this.id_of_the_user = id_of_the_user;
     }
 
-    public post(String content , int no_likes ){
+    public post(String content , int no_likes , int id_of_the_post){
         this.content = content ;
         this.no_likes = no_likes ;
+        this.id_of_the_post = id_of_the_post ;
     }
+
 
     public String getContent() {
         return content;

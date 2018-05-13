@@ -10,26 +10,27 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_centerHorizontal="true">
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:text="Home Page"
-            android:textSize="24sp"
-            android:gravity="center_horizontal"
-            android:background="#18ffff"
+            android:textAllCaps="false"
+            android:textSize="20sp"
+            android:background="@color/colorPrimary"
+            android:textColor="#FFF"
             android:onClick="view_friends_posts"/>
-
-
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Post on your timeline"
             android:textAllCaps="false"
-            android:textSize="24sp"
+            android:textSize="20sp"
             android:layout_margin="16sp"
-            android:background="#18ffff"
+            android:background="@color/colorPrimary"
+            android:textColor="#FFF"
             android:onClick="WritePost"
             />
 
@@ -38,16 +39,43 @@
             android:layout_height="wrap_content"
             android:text="Add friends"
             android:textAllCaps="false"
-            android:background="#18ffff"
+            android:background="@color/colorPrimary"
+            android:textColor="#FFF"
+            android:textSize="20sp"
             android:layout_margin="16sp"/>
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="My wall"
-            android:textAllCaps="false"
-            android:background="#18ffff"
+            android:background="@color/colorPrimary"
+            android:textColor="#FFF"
+            android:textSize="20sp"
             android:layout_margin="16sp"
-            android:onClick="show_my_wall"
+            android:text="Search "
+            android:textAllCaps="false"
+            android:onClick="Search"
+            />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="My posts"
+            android:onClick="gotoWall"
+            android:textAllCaps="false"
+            android:background="@color/colorPrimary"
+            android:textColor="#FFF"
+            android:textSize="20sp"
+            android:layout_margin="16sp"
+            />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Account Information"
+            android:textAllCaps="false"
+            android:background="@color/colorPrimary"
+            android:textColor="#FFF"
+            android:textSize="20sp"
+            android:onClick="viewInfo"
+            android:layout_margin="16sp"
             />
     </LinearLayout>
 

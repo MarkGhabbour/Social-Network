@@ -31,8 +31,16 @@
         <activity
             android:name=".writepost"
             android:label="Write a post" />
-        <activity android:name=".my_wall" />
-        <activity android:name=".admin"></activity>
+        <activity
+            android:name=".myWall"
+            android:label="My Posts" />
+        <activity
+            android:name=".admin"
+            android:label="Registered Users" />
+        <activity android:name=".user_page_in_admin_mode" />
+        <activity android:name=".user_wall_for_admin" />
+        <activity android:name=".search_name" />
+        <activity android:name=".specific_names"></activity>
     </application>
 
 </manifest>

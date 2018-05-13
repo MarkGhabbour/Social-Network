@@ -16,9 +16,10 @@ public class user {
         return name;
     }
 
-    public user (String name , int n){
+    public user (String name , int n , int _Id){
         this.name = name ;
         this . no_of_friends = n ;
+        this._Id = _Id ;
     }
 
     public post get_specific_post(int no){

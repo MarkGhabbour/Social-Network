@@ -1,6 +1,8 @@
 package com.example.android.socialnetwork;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -8,6 +10,7 @@ import android.widget.TextView;
 import com.example.android.socialnetwork.packagefordb.UserHelper;
 import java.util.ArrayList;
 
+import com.example.android.socialnetwork.packagefordb.usercontract.userEntry;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
     public void ne(View view) {
         Intent n = new Intent(this , signup.class);
         startActivity(n);
@@ -37,12 +41,11 @@ public class MainActivity extends AppCompatActivity {
         Intent n  = new Intent(this,Login.class);
         startActivity(n);
     }
-
-    public void admin(View view){
-        Intent intent = new Intent(this , admin.class);
-        startActivity(intent);
+    public void gotoAdmin(View view)
+    {
+        Intent n = new Intent(this,admin.class);
+        startActivity(n);
     }
-
 
 
 }

@@ -29,28 +29,13 @@ public class writepost extends AppCompatActivity {
 
         //Add post to posts table
         PostHelper postHelper = new PostHelper(this) ;
-        SQLiteDatabase sql = postHelper.getWritableDatabase() ;
-
-        ContentValues c = new ContentValues();
-        c.put(PostEntry.COULMN_POST , post_body);
-        c.put(PostEntry.COULMN_userid ,personal_page.this_user_id);
-        c.put(PostEntry.COLUMN_likes , 0);
-
-        sql.insert(PostEntry.TABLE_NAME , null , c) ;
+        boolean isInserted = postHelper.insertPost(personal_page.this_user_id,0,post_body);
 
         //Now display a toast message and return automatically to personal_page file
-
-        Context context = getApplicationContext();
-        CharSequence text = "The post is added to your Timeline";
-        int duration = Toast.LENGTH_LONG;
-        Toast toast = Toast.makeText(context, text, duration);
-        toast.show();
-
-        // Now return back to his personal page
-        Intent intent = new Intent(this , personal_page.class);
-        startActivity(intent);
-
+       if(isInserted)
+       {
+           Toast.makeText(this,"Posted Successfully",Toast.LENGTH_SHORT).show();
+           finish();
+       }
     }
-
-
 }

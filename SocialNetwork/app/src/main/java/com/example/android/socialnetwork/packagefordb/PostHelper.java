@@ -1,5 +1,6 @@
 package com.example.android.socialnetwork.packagefordb;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -32,5 +33,17 @@ public class PostHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
 
+    }
+
+    public boolean insertPost(int userId,int likes,String body)
+    {
+        SQLiteDatabase postDb = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(PostEntry.COULMN_userid,userId);
+        cv.put(PostEntry.COLUMN_likes,likes);
+        cv.put(PostEntry.COULMN_POST,body);
+        long result = postDb.insert(PostEntry.TABLE_NAME,null,cv);
+        if(result == -1) return false;
+        else return true;
     }
 }
