@@ -29,11 +29,11 @@ public class my_wall extends AppCompatActivity {
 
         String id = String.valueOf(personal_page.this_user_id);
 
-        String [] projection = {PostEntry.TABLE_NAME , PostEntry.COLUMN_postid , PostEntry.COLUMN_likes , PostEntry.COULMN_POST} ;
+        String [] projection = { PostEntry.COLUMN_postid , PostEntry.COLUMN_likes , PostEntry.COULMN_POST} ;
         String selection = PostEntry.COULMN_userid+"=?";
         String [] selectionargs = {id} ;
         Cursor c = sql.query(userEntry.TABLE_NAME ,projection,selection,selectionargs,null,null,
-                                PostEntry.COLUMN_postid + " DES" );
+                                PostEntry.COLUMN_postid + " DESC" );
 
         // Get all posts of that user into an arraylist
 
