@@ -6,10 +6,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-<<<<<<< HEAD
-import android.util.Log;
-=======
->>>>>>> c736f16dfdb68b298a7749dee756b6b329b0a132
 
 import com.example.android.socialnetwork.packagefordb.UserHelper;
 import com.example.android.socialnetwork.packagefordb.usercontract.userEntry;
@@ -19,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.Queue;
+import java.util.Stack;
 import java.util.Vector;
 
 import static java.lang.Integer.parseInt;
@@ -42,34 +39,18 @@ public final class Search extends AppCompatActivity {
 
         UserHelper userHelper = new UserHelper(context);
         SQLiteDatabase ins = userHelper.getReadableDatabase();
-<<<<<<< HEAD
-
-=======
->>>>>>> c736f16dfdb68b298a7749dee756b6b329b0a132
         Cursor c = ins.query(userEntry.TABLE_NAME, projection, null,
                 null, null, null, "ASC", null);
         c.moveToFirst();
 
-<<<<<<< HEAD
-
-
-        Vector<Boolean> visited = new Vector<>(  c .getCount());
-        for(int i=0; i<c.getCount(); i++)
-        {
-            visited.add(i,false);
-
-        }
-
-=======
         Vector<Boolean> visited = new Vector<>(  c .getCount());
         for(int i=0; i<c.getCount(); i++)
             visited.add(i,false);
 
->>>>>>> c736f16dfdb68b298a7749dee756b6b329b0a132
 //        Vector<user> users = new Vector<>();
 //
 //        //this code needs each user to have an id attribue which i added
-//        //added an id attribute to each user it needs to build users vector, in which users are added from cursor to vector
+//        //added an id attribute to each user it needs to build users Vector, in which users are added from cursor to Vector
 //        //and adding each user friends in it
 //
 //        for(int i=0; i<c.getCount(); i++)
@@ -90,17 +71,6 @@ public final class Search extends AppCompatActivity {
 
         getAdjList(c, adjList);
 
-<<<<<<< HEAD
-        for(int i=0; i<adjList.size(); i++){
-
-            for(int j=0; j< adjList.get(i).size(); j++){
-                Log.v("Search Class", ""+ adjList.get(i).get(j));
-            }
-
-        }
-
-=======
->>>>>>> c736f16dfdb68b298a7749dee756b6b329b0a132
         queue  toBeVisited = new queue () ;
 
 
@@ -127,10 +97,10 @@ public final class Search extends AppCompatActivity {
         return result;
     }
 
-private void getAdjList(Cursor c,  Vector<ArrayList<Integer>> adjList )
-{
+    private void getAdjList(Cursor c,  Vector<ArrayList<Integer>> adjList )
+    {
 
-       int count = c.getCount();
+        int count = c.getCount();
 
         String s = new String();
 
@@ -149,7 +119,74 @@ private void getAdjList(Cursor c,  Vector<ArrayList<Integer>> adjList )
 
             c.moveToNext();
         }
-  }
+    }
+
+    Stack<Integer> findShortestPathInSocialNetwork(Vector<ArrayList<Integer> > adjList, int source, int end, int size)
+    {
+
+        Vector<Boolean> isVisited = new Vector<> ( size);
+        Vector<ArrayList<Integer>>  parent = new Vector<ArrayList<Integer>>(size);
+        Vector<Integer> myDistance= new Vector<Integer>(size);
+        queue toBeVisited = new queue();
+        boolean isFound = false;
+
+        for(int i=0; i<size; i++)
+        {
+            isVisited.set(i, false);
+            myDistance.set(i, 0);
+        }
+
+        toBeVisited.enqueue(source);
+        isVisited.set(source, true) ;
+
+
+        while (!toBeVisited.isEmpty())
+        {
+            int current_node = toBeVisited.dequeue();
+
+
+            if (current_node == end)
+            {
+                isFound = true;
+                break;
+            }
+
+            for (int i=0; i<  adjList.get(current_node).size();  i++)
+            {
+                int index =adjList.get(current_node).get(i);
+
+                if (!isVisited.get(index))
+                {
+                    isVisited.set(index, true);
+                    toBeVisited.enqueue(index);
+                    int tmpDist = myDistance.get(current_node)+1;
+                    myDistance.set(index, tmpDist) ;
+                    parent.get(index).add(current_node);
+                }
+            }
+        }
+        Stack<Integer> path = new Stack<>();
+
+        if (isFound)
+        {
+
+            path.push(new Integer(end));
+            int distance = myDistance.get(end);
+            int current_node = end;
+
+            while (distance!=0)
+            {
+                int tmp = parent.get(current_node).get(0);
+                path.push(tmp);
+                current_node = path.peek();
+                distance--;
+            }
+
+        }
+
+        return path;
+    }
+
 
 
 }
