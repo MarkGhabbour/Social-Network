@@ -68,6 +68,8 @@ public final class Search extends AppCompatActivity {
                 {
                     visited.set(index, true);
                     toBeVisited.enqueue(i);
+                    if(current_node != me._Id)
+                        result.add(i);
                 }
             }
         }
