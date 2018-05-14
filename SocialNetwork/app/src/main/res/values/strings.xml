@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Social Network</string>
+    <string name="is_friend">Friend</string>string>
 </resources>
