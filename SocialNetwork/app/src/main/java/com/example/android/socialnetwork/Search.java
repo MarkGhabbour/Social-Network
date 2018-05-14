@@ -47,27 +47,6 @@ public final class Search extends AppCompatActivity {
         for(int i=0; i<c.getCount(); i++)
             visited.add(i,false);
 
-//        Vector<user> users = new Vector<>();
-//
-//        //this code needs each user to have an id attribue which i added
-//        //added an id attribute to each user it needs to build users Vector, in which users are added from cursor to Vector
-//        //and adding each user friends in it
-//
-//        for(int i=0; i<c.getCount(); i++)
-//        {
-//            user tmpUser = new user();
-//            tmpUser = users.get(i);
-//
-//            for (int j = 0; j <tmpUser.getFriends().size(); j++)
-//            {
-//                user tmpUser2 = new user();
-//                tmpUser2= tmpUser.getFriends().get(j);
-//                int tmp_id = tmpUser2.get_Id();
-//                adjList.get(j).add(tmp_id);
-//
-//            }
-//
-//        }
 
         getAdjList(c, adjList);
 
@@ -97,32 +76,28 @@ public final class Search extends AppCompatActivity {
         return result;
     }
 
-    private void getAdjList(Cursor c,  Vector<ArrayList<Integer>> adjList )
+
+
+    Stack<Integer> findShortestPathInSocialNetwork( int source, int end)
     {
+        Vector<ArrayList<Integer>> adjList = new  Vector<ArrayList<Integer>>();
 
-        int count = c.getCount();
+        String[] projection = {userEntry._ID, userEntry.COULMN_UserName, userEntry.COULMN_password, userEntry.COULMN_number_friends,
+                userEntry.COULMN_friends};
+        String selection = userEntry.COULMN_UserName + "=?" + " AND " + userEntry.COULMN_password + "=?";
 
-        String s = new String();
+        Context context = getApplicationContext();
 
-        for(int i=0; i<count; i++)
-        {
-            int id= c.getInt(c.getColumnIndex(userEntry._ID));
-            s= getString(c.getColumnIndex(userEntry.COULMN_friends ));
-            int no_friends = c.getInt(c.getColumnIndex(userEntry.COULMN_number_friends));
-            String[] parts = s.split(",");
+        UserHelper userHelper = new UserHelper(context);
+        SQLiteDatabase ins = userHelper.getReadableDatabase();
+        Cursor c = ins.query(userEntry.TABLE_NAME, projection, null,
+                null, null, null, "ASC", null);
+        c.moveToFirst();
 
-            for(int j=0; j<no_friends; j++)
-            {
-                int friend_Id = parseInt(parts[j]);
-                adjList.get(i).add(friend_Id);
-            }
+        getAdjList(c, adjList);
+        int size = c.getCount();
 
-            c.moveToNext();
-        }
-    }
-
-    Stack<Integer> findShortestPathInSocialNetwork(Vector<ArrayList<Integer> > adjList, int source, int end, int size)
-    {
+        ///////////////////////////////////////////////////////////////////
 
         Vector<Boolean> isVisited = new Vector<> ( size);
         Vector<ArrayList<Integer>>  parent = new Vector<ArrayList<Integer>>(size);
@@ -186,7 +161,29 @@ public final class Search extends AppCompatActivity {
 
         return path;
     }
+    private void getAdjList(Cursor c,  Vector<ArrayList<Integer>> adjList )
+    {
 
+        int count = c.getCount();
+
+        String s = new String();
+
+        for(int i=0; i<count; i++)
+        {
+            int id= c.getInt(c.getColumnIndex(userEntry._ID));
+            s= getString(c.getColumnIndex(userEntry.COULMN_friends ));
+            int no_friends = c.getInt(c.getColumnIndex(userEntry.COULMN_number_friends));
+            String[] parts = s.split(",");
+
+            for(int j=0; j<no_friends; j++)
+            {
+                int friend_Id = parseInt(parts[j]);
+                adjList.get(i).add(friend_Id);
+            }
+
+            c.moveToNext();
+        }
+    }
 
 
 }
