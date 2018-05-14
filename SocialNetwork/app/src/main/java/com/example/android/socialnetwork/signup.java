@@ -83,6 +83,10 @@ public class signup extends AppCompatActivity {
             Toast.makeText(this, "Data inserted", Toast.LENGTH_LONG).show();
             startActivity(personal_page);
         }
+        else
+        {
+            Toast.makeText(this, "This user name is already taken please choose different one", Toast.LENGTH_LONG).show();
+        }
 
 
 
