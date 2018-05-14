@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.example.android.socialnetwork.packagefordb.UserHelper;
 import com.example.android.socialnetwork.packagefordb.usercontract;
 import com.example.android.socialnetwork.packagefordb.usercontract.userEntry;
@@ -45,24 +47,34 @@ public class Friend_Adapter extends ArrayAdapter<user> {
         UserHelper Helper=new UserHelper(getContext());
         SQLiteDatabase sqLiteDatabase = Helper.getReadableDatabase() ;
 
-        String [] projection = {userEntry.COULMN_friends };
+        String[]  projection = {userEntry.COULMN_friends };
         String selection = userEntry._ID+"=?" ;
-        String[] selectionargs ={String.valueOf( this_user_id)} ;
+        String[] selectionargs ={String.valueOf(this_user_id)} ;
 
         Cursor c = sqLiteDatabase.query(userEntry.TABLE_NAME , projection , selection , selectionargs , null , null, null  ) ;
    // Cursor c;
+        c.moveToFirst() ;
+        String Friends= c.getString(c.getColumnIndex(userEntry.COULMN_friends));
+        if (Friends.contains(String.valueOf(singleUser._Id))) {
+            Frnd.setText("Friend");
 
+        }
+        else {
 
-        String Friends = c.getString(c.getColumnIndex(userEntry.COULMN_friends));
-           // String Friends ="1";
+            Frnd.setText("Not Friend");
+
+        }
+        /*
+        }
+       //
+         String  Friends="1";
             if (Friends.contains(String.valueOf(singleUser._Id))) {
-                Frnd.setText("Friend");
+
             } else {
-                Frnd.setText("Not Friend");
 
             }
 
-
+*/
         // using the same image every time
         buckysImage.setImageResource(R.drawable.icons8_account_96);
         // Now we can finally return our custom View or custom item
