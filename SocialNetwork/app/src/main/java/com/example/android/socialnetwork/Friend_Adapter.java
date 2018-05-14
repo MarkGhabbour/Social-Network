@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,6 +30,10 @@ public class Friend_Adapter extends ArrayAdapter<user> {
         super(context, R.layout.search_result, userList);
 
     }
+    public void  Add(View view)
+    {
+
+    }
 
 
     @Override
@@ -40,6 +45,7 @@ public class Friend_Adapter extends ArrayAdapter<user> {
         TextView itemText = (TextView) customView.findViewById(R.id.item_text);
         TextView smallItemText = (TextView) customView.findViewById(R.id.item_small_text);
         TextView Frnd= (TextView) customView.findViewById(R.id.Friend) ;
+        Button btn = (Button) customView.findViewById(R.id.btnFriend);
         ImageView buckysImage = (ImageView) customView.findViewById(R.id.my_profile_image);
         // dynamically update the text from the array
         itemText.setText(singleUser.name);
@@ -56,25 +62,18 @@ public class Friend_Adapter extends ArrayAdapter<user> {
         c.moveToFirst() ;
         String Friends= c.getString(c.getColumnIndex(userEntry.COULMN_friends));
         if (Friends.contains(String.valueOf(singleUser._Id))) {
-            Frnd.setText("Friend");
+
+            btn.setVisibility(View.INVISIBLE);
+            Frnd.setVisibility(View.VISIBLE);
 
         }
         else {
 
-            Frnd.setText("Not Friend");
+            Frnd.setVisibility(View.INVISIBLE);
+            btn.setVisibility(View.VISIBLE);
 
         }
-        /*
-        }
-       //
-         String  Friends="1";
-            if (Friends.contains(String.valueOf(singleUser._Id))) {
-
-            } else {
-
-            }
-
-*/
+        smallItemText.setText("Has "+singleUser.no_of_friends+" friends");
         // using the same image every time
         buckysImage.setImageResource(R.drawable.icons8_account_96);
         // Now we can finally return our custom View or custom item
