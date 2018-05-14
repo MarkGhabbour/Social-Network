@@ -35,7 +35,7 @@ public class user_page_in_admin_mode extends AppCompatActivity {
 
     public void delete_user(View view){
         final AlertDialog.Builder alertDialog = new AlertDialog.Builder(this) ;
-        String title = "You are about to delete a user !!" ;
+        String title = "You are about to delete a user !" ;
         String message = "Are you sure you want to delete this user from network ?" ;
         alertDialog.setMessage(message) ;
         alertDialog.setTitle(title) ;
@@ -59,21 +59,21 @@ public class user_page_in_admin_mode extends AppCompatActivity {
         String id_of_the_erased_user = String.valueOf(id);
         UserHelper userHelper = new UserHelper(this) ;
         SQLiteDatabase sql = userHelper.getWritableDatabase() ;
-        sql.delete(userEntry.TABLE_NAME , userEntry._ID + "=" +id_of_the_erased_user , null ) ;
+        sql.delete(userEntry.TABLE_NAME , userEntry._ID + " = " +id_of_the_erased_user , null ) ;
 
         // Delete all posts of that user
         PostHelper postHelper = new PostHelper(this) ;
         SQLiteDatabase sql2 = postHelper.getWritableDatabase();
-        sql2.delete(usercontract.PostEntry.TABLE_NAME , usercontract.PostEntry.COULMN_userid+"="+id_of_the_erased_user,null);
+        sql2.delete(usercontract.PostEntry.TABLE_NAME , usercontract.PostEntry.COULMN_userid+" = "+id_of_the_erased_user,null);
 
         Toast.makeText(this,"The user is deleted ",Toast.LENGTH_LONG).show();
 
         // go to previous page of all users again
-
+        personal_page.this_user_id = id ;
         Intent intent = new Intent(this , admin.class) ;
         startActivity(intent);
-        personal_page.this_user_id = id ;
-        startActivity(intent);
+        finish(); // this fn returns shuts current intent and return to its parent.
+        //startActivity(intent);
     }
 
     public void do_nothing(){

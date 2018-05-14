@@ -38,7 +38,7 @@
             android:name=".admin"
             android:label="Registered Users" />
         <activity android:name=".user_page_in_admin_mode" />
-        <activity android:name=".user_wall_for_admin" />
+        <activity android:name=".user_wall_for_admin" android:label="User's posts" />
         <activity android:name=".search_name" />
         <activity android:name=".specific_names"></activity>
     </application>

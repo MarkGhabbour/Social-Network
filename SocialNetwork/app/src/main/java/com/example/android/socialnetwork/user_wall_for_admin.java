@@ -107,9 +107,9 @@ public class user_wall_for_admin extends AppCompatActivity {
      // Show posts again
 
 
-        Intent intent = new Intent(this  , admin.class);
+        Intent intent = new Intent(this  , user_wall_for_admin.class);
         startActivity(intent);
-
+        finish();
 
     }
 
