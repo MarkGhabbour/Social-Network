@@ -40,8 +40,8 @@ public class specific_names extends AppCompatActivity {
         SQLiteDatabase sqLiteDatabase = userHelper.getReadableDatabase() ;
 
         String [] projection = {userEntry.COULMN_UserName , userEntry.COULMN_number_friends , userEntry._ID} ;
-        String selection = userEntry.COULMN_UserName+"=?" ;
-        String [] selectionargs = {name} ;
+        String selection = userEntry.COULMN_UserName+" LIKE ?" ;
+        String [] selectionargs = {"%"+name+"%"} ;
 
         Cursor c = sqLiteDatabase.query(userEntry.TABLE_NAME , projection , selection , selectionargs , null , null, null ) ;
 

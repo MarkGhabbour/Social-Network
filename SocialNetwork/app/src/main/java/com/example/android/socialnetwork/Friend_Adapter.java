@@ -30,7 +30,7 @@ public class Friend_Adapter extends ArrayAdapter<user> {
         super(context, R.layout.search_result, userList);
 
     }
-    public boolean flag=false;
+
      public  void update(user singleUser,TextView txt)
      {
 
@@ -101,25 +101,21 @@ public class Friend_Adapter extends ArrayAdapter<user> {
          txt.setText("Has "+String.valueOf(result2)+" Friends");
          Values.put(userEntry.COULMN_number_friends,String.valueOf(result2));
          Data2.update(userEntry.TABLE_NAME, Values, userEntry._ID+"=" +String.valueOf(singleUser._Id) , null);
-        flag=true;
          //
      }
 
 
-
-    public TextView Frnd;
   ;
 
     @Override
     public View getView (int position, View convertView, ViewGroup parent) {
-        flag=false;
         LayoutInflater myCustomInflater = LayoutInflater.from(getContext());
         View customView = myCustomInflater.inflate(R.layout.search_result, parent, false);
         // get references.
         final user singleUser = getItem(position);
         TextView itemText = (TextView) customView.findViewById(R.id.item_text);
         final TextView smallItemText = (TextView) customView.findViewById(R.id.item_small_text);
-         Frnd= (TextView) customView.findViewById(R.id.Friend) ;
+         final TextView Frnd= (TextView) customView.findViewById(R.id.Friend) ;
         Button btn = (Button) customView.findViewById(R.id.btnFriend);
         ImageView buckysImage = (ImageView) customView.findViewById(R.id.my_profile_image);
         // dynamically update the text from the array
@@ -164,7 +160,6 @@ public class Friend_Adapter extends ArrayAdapter<user> {
                                 }
      });
 
-        //the flag is true if the button is pressed
 
         smallItemText.setText("Has "+singleUser.no_of_friends+" Friends");
 
