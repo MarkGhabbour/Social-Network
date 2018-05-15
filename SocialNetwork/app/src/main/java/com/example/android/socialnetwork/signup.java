@@ -59,8 +59,19 @@ public class signup extends AppCompatActivity {
         {
             Toast.makeText(this,"Please fill in your data correctly",Toast.LENGTH_LONG).show();
         }
-        else
-            isInserted = userDb.insertUser(name2,0,"",pass2);
+        else {
+            SQLiteDatabase userdb = new UserHelper(this).getWritableDatabase();
+            ContentValues contentvalues = new ContentValues();
+            contentvalues.put(userEntry.COULMN_UserName,name2);
+            contentvalues.put(userEntry.COULMN_number_friends,0);
+            contentvalues.put(userEntry.COULMN_friends,"");
+            contentvalues.put(userEntry.COULMN_password,pass2);
+            long result = userdb.insert(userEntry.TABLE_NAME,null,contentvalues);
+            Intent personal_page = new Intent(this,personal_page.class);
+
+                Toast.makeText(this, "Data inserted", Toast.LENGTH_LONG).show();
+                startActivity(personal_page);
+        }
 
         SQLiteDatabase ins = userDb.getWritableDatabase();
 

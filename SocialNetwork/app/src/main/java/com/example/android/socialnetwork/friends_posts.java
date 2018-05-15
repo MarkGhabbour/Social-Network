@@ -71,8 +71,9 @@ public class friends_posts extends AppCompatActivity {
                     null,null,null) ;
             // Loop on all posts from that user
             pointer_to_post.moveToFirst();
+            int d = pointer_to_post.getCount();
             int i = 0 ;
-            while(i<pointer_to_post.getCount()){
+            while(i<d){
                 String post_body = pointer_to_post.getString(pointer_to_post.getColumnIndex(PostEntry.COULMN_POST)) ;
                 int id_user = pointer_to_post.getInt(pointer_to_post.getColumnIndex(PostEntry.COULMN_userid)) ;
                 int post_no = pointer_to_post.getInt(pointer_to_post.getColumnIndex(PostEntry.COLUMN_postid)) ;

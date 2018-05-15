@@ -10,7 +10,6 @@ import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
-import android.util.*;
 
 import com.example.android.socialnetwork.packagefordb.UserHelper;
 
@@ -32,7 +31,6 @@ public class specific_names extends AppCompatActivity {
         show_users_looked_for();
 
     }
-
     public void show_users_looked_for()
     {
 
@@ -40,8 +38,8 @@ public class specific_names extends AppCompatActivity {
         SQLiteDatabase sqLiteDatabase = userHelper.getReadableDatabase() ;
 
         String [] projection = {userEntry.COULMN_UserName , userEntry.COULMN_number_friends , userEntry._ID} ;
-        String selection = userEntry.COULMN_UserName+" LIKE ?" ;
-        String [] selectionargs = {"%"+name+"%"} ;
+        String selection = userEntry.COULMN_UserName+"=?" ;
+        String [] selectionargs = {name} ;
 
         Cursor c = sqLiteDatabase.query(userEntry.TABLE_NAME , projection , selection , selectionargs , null , null, null ) ;
 
@@ -61,7 +59,7 @@ public class specific_names extends AppCompatActivity {
 
             Collections.sort(all_users , new  UsersArrange());
 
-            final ListAdapter customListAdapter = new Friend_Adapter(this,all_users);// Pass the array to the constructor.
+            final ListAdapter customListAdapter = new UserAdapterWithAddFriend(this,all_users);// Pass the array to the constructor.
             final ListView customListView = (ListView) findViewById(R.id.list);
             customListView.setAdapter(customListAdapter);
 

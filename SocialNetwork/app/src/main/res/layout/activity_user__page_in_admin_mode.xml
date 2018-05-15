@@ -8,34 +8,32 @@
     tools:context="com.example.android.socialnetwork.user_page_in_admin_mode">
 
     <ImageView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src = "@drawable/welcome"
         android:layout_gravity="center_horizontal"
         />
 
     <Button
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Delete this user"
-        android:textColor="#FFF"
-        android:background="@color/colorPrimary"
+        android:textColor="#d50000"
+        android:background="#757575"
         android:layout_gravity="center_horizontal"
         android:layout_margin="8dp"
-        android:padding="10dp"
         android:onClick="delete_user"
         />
 
     <Button
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Delete post"
-        android:textAllCaps="true"
+        android:text="Delete content"
+        android:textAllCaps="false"
         android:layout_gravity="center_horizontal"
         android:layout_margin="8dp"
-        android:textColor="#FFF"
-        android:background="@color/colorPrimary"
-        android:padding="10dp"
+        android:textColor="#d50000"
+        android:background="#757575"
         android:onClick="delete_content"
         />
 

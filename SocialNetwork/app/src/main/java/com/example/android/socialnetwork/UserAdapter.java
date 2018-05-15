@@ -9,6 +9,10 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.android.socialnetwork.packagefordb.UserHelper;
+
 import java.util.ArrayList;
 
 public class UserAdapter extends ArrayAdapter<user> {
@@ -18,10 +22,13 @@ public class UserAdapter extends ArrayAdapter<user> {
 
 
 
+
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
+
         LayoutInflater myCustomInflater = LayoutInflater.from(getContext());
         View customView = myCustomInflater.inflate(R.layout.custom_row, parent, false);
+
         // get references.
         user singleUser = getItem(position);
         TextView itemText = (TextView) customView.findViewById(R.id.item_text);

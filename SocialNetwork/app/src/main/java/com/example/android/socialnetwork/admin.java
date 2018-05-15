@@ -55,6 +55,8 @@ public class admin extends AppCompatActivity {
             i++;
             c.moveToNext();
         }
+
+
         Collections.sort(all_users ,new  UsersArrange()) ;
         // Pass them to users arrayadapter
         final ListAdapter customListAdapter = new UserAdapter(this,all_users);// Pass the array to the constructor.
@@ -64,6 +66,9 @@ public class admin extends AppCompatActivity {
                 new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        //String postBody = String.valueOf(parent.getItemAtPosition(position));
+                       // Toast.makeText(admin.this, ""+position + "  " + all_users.get(position).get_Id(), Toast.LENGTH_LONG ).show();
+
                         go_to_user_as_admin(all_users.get(position).get_Id());
                     }
                 }
@@ -76,7 +81,6 @@ public class admin extends AppCompatActivity {
         Intent intent = new Intent(this , user_page_in_admin_mode.class);
         user_page_in_admin_mode.id = id_of_user ;
         startActivity(intent);
-        finish();
     }
 
 

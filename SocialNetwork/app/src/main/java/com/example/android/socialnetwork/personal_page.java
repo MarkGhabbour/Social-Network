@@ -85,6 +85,11 @@ public class personal_page extends AppCompatActivity {
         builder.show();
     }
 
+    public void show_non_friends(View view){
+        Intent intent = new Intent(this , view_all_not_friends.class);
+        startActivity(intent);
+    }
+
     public void gotoWall(View view)
     {
         Intent n = new Intent(this,myWall.class);
