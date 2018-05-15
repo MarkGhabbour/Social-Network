@@ -38,8 +38,8 @@ public class specific_names extends AppCompatActivity {
         SQLiteDatabase sqLiteDatabase = userHelper.getReadableDatabase() ;
 
         String [] projection = {userEntry.COULMN_UserName , userEntry.COULMN_number_friends , userEntry._ID} ;
-        String selection = userEntry.COULMN_UserName+"=?" ;
-        String [] selectionargs = {name} ;
+        String selection = userEntry.COULMN_UserName+" LIKE ?" ;
+        String [] selectionargs = {"%"+name+"%"} ;
 
         Cursor c = sqLiteDatabase.query(userEntry.TABLE_NAME , projection , selection , selectionargs , null , null, null ) ;
 
@@ -52,8 +52,11 @@ public class specific_names extends AppCompatActivity {
             while (i<d){
                 user a = new user(c.getString(c.getColumnIndex(userEntry.COULMN_UserName)),c.getInt(c.getColumnIndex(userEntry.COULMN_number_friends)) ,
                         c.getInt(c.getColumnIndex(userEntry._ID))) ;
-                all_users.add(a);
+                if(c.getInt(c.getColumnIndex(userEntry._ID))!=personal_page.this_user_id)
+                    all_users.add(a);
+
                 i++;
+
                 c.moveToNext();
             }
 

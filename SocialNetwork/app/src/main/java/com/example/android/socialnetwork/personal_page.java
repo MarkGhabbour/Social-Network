@@ -70,8 +70,8 @@ public class personal_page extends AppCompatActivity {
             StringBuffer buffer = new StringBuffer();
             buffer.append("Id :"+ res.getString(0)+"\n");
             buffer.append("Name :"+ res.getString(1)+"\n");
-            buffer.append("Number of friends :"+ res.getInt(2)+"\n");
-            buffer.append("password :"+ res.getString(4)+"\n\n");
+            buffer.append("Number of friends :"+ res.getInt(3)+"\n");
+            buffer.append("password :"+ res.getString(2)+"\n\n");
             showMessage("Your account information",buffer.toString());
         }
 

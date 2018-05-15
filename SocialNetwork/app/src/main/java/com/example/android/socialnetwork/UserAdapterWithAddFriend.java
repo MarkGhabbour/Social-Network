@@ -51,7 +51,7 @@ public class UserAdapterWithAddFriend extends ArrayAdapter<user> {
     ArrayList<user>arrayList = new ArrayList<>();
 
 
-    public void add_this_friend(int id ){
+    public void add_this_friend(int id, Button btn, TextView txt, TextView txt2 ){
 
         if(id==personal_page.this_user_id){
             Toast.makeText(getContext() , "Thst's You !!" , Toast.LENGTH_LONG).show();
@@ -126,12 +126,12 @@ public class UserAdapterWithAddFriend extends ArrayAdapter<user> {
         c2.moveToFirst() ;
 
         int no_friends_of_added_user = c2.getInt(c.getColumnIndex(userEntry.COULMN_number_friends)) ;
-
+        no_friends_of_added_user++;
         String friends_of_added_user = c2.getString(c.getColumnIndex(userEntry.COULMN_friends)) ;
 
         ContentValues contentValues2 = new ContentValues() ;
 
-        contentValues2.put(userEntry.COULMN_number_friends , no_friends_of_added_user+1);
+        contentValues2.put(userEntry.COULMN_number_friends , no_friends_of_added_user);
 
         String friends3;
         if(no_friends_of_added_user==0) friends3 = String.valueOf(personal_page.this_user_id)+",";
@@ -145,6 +145,11 @@ public class UserAdapterWithAddFriend extends ArrayAdapter<user> {
         int y2 =sql_update.update(userEntry.TABLE_NAME , contentValues2 ,userEntry._ID+"="+String.valueOf(id),null);
         if(y2>0){
             Toast.makeText(getContext() , "Another user added successfully " ,Toast.LENGTH_LONG).show();
+            btn.setVisibility(View.INVISIBLE);
+            txt.setVisibility(View.VISIBLE);
+            txt.setText("Friend");
+            txt2.setText("Has " +String.valueOf(no_friends_of_added_user)+" Friends");
+
         }
     }
 
@@ -156,8 +161,9 @@ public class UserAdapterWithAddFriend extends ArrayAdapter<user> {
         View customView = myCustomInflater.inflate(R.layout.view_for_user_adapter_with_add, parent, false);
 
         user singleUser = getItem(position);
-        TextView itemText = (TextView) customView.findViewById(R.id.item_text);
-        TextView smallItemText = (TextView) customView.findViewById(R.id.item_small_text);
+         TextView itemText = (TextView) customView.findViewById(R.id.item_text);
+        final TextView smallItemText = (TextView) customView.findViewById(R.id.item_small_text);
+        final TextView textView =(TextView) customView.findViewById(R.id.text) ;
         ImageView buckysImage = (ImageView) customView.findViewById(R.id.my_profile_image);
         // dynamically update the text from the array
         itemText.setText(singleUser.name);
@@ -166,7 +172,7 @@ public class UserAdapterWithAddFriend extends ArrayAdapter<user> {
         buckysImage.setImageResource(R.drawable.icons8_account_96);
 
 
-        Button add = (Button) customView.findViewById(R.id.add);
+       final Button add = (Button) customView.findViewById(R.id.add);
 
         // Get all friends of the friend who searched
 
@@ -197,7 +203,7 @@ public class UserAdapterWithAddFriend extends ArrayAdapter<user> {
                         arrayList.get(position).get_Id()==personal_page.this_user_id  )
                 {
                     add.setVisibility(View.INVISIBLE);
-                    TextView textView = customView.findViewById(R.id.text) ;
+
                     textView.setText("Friend");
                 }
             }
@@ -218,7 +224,7 @@ public class UserAdapterWithAddFriend extends ArrayAdapter<user> {
                     // then check wheather he is a friend or not
 
                   //  Toast.makeText(getContext(), print + "   " + arrayList.get(position)._Id, Toast.LENGTH_LONG).show();
-                    add_this_friend(arrayList.get(position)._Id);
+                    add_this_friend(arrayList.get(position)._Id,add, textView, smallItemText);
 
                 }
             });
