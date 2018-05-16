@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void readXml()
+    public void readXml(View v)
     {/*
         Document doc=null;
         DocumentBuilderFactory dbf=DocumentBuilderFactory.newInstance();
@@ -172,7 +172,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        Intent n  = new Intent(this,xmlFile.class);
+        Intent n  = new Intent(this,Parsing_Xml_File.class);
         startActivity(n);
 
     }
