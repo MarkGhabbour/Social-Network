@@ -71,16 +71,16 @@ public class MainActivity extends AppCompatActivity {
             serializer.startTag("", userEntry.TABLE_NAME);
             for(int i=0;i<no_of_all_users;i++) {
                 serializer.startTag("","ID");
-                serializer.text(String.valueOf(c.getInt(c.getColumnIndex(userEntry._ID))));
+                serializer.text(c.getString(c.getColumnIndex(userEntry._ID)));
                 serializer.endTag("","ID");
                 serializer.startTag("","username");
-                serializer.text(String.valueOf(c.getInt(c.getColumnIndex(userEntry.COULMN_UserName))));
+                serializer.text(c.getString(c.getColumnIndex(userEntry.COULMN_UserName)));
                 serializer.endTag("","username");
                 serializer.startTag("","Number of Friends");
-                serializer.text(String.valueOf(c.getInt(c.getColumnIndex(userEntry.COULMN_number_friends))));
+                serializer.text(c.getString(c.getColumnIndex(userEntry.COULMN_number_friends)));
                 serializer.endTag("","Number of Friends");
                 serializer.startTag("","password");
-                serializer.text(String.valueOf(c.getInt(c.getColumnIndex(userEntry.COULMN_password))));
+                serializer.text(c.getString(c.getColumnIndex(userEntry.COULMN_password)));
                 serializer.endTag("","password");
                 c.moveToNext();
 
@@ -93,24 +93,24 @@ public class MainActivity extends AppCompatActivity {
             fileStream fs= new fileStream();
 
             fs.writeToFile(this,"database.xml",result);
+
+            Toast.makeText(this,MainActivity.this.getFilesDir().getAbsolutePath(),Toast.LENGTH_LONG).show();
         }
         catch(Exception e)
         {
             throw new RuntimeException(e);
+
         }
     }
-
-    public void readXml(View v)
-    {/*
-        Document doc=null;
-        DocumentBuilderFactory dbf=DocumentBuilderFactory.newInstance();
-        DocumentBuilder db;
-        */
+    public void get (View get)
+    {
+        Toast.makeText(this, "HIIII",Toast.LENGTH_LONG).show();
         XmlPullParserFactory Factory;
         FileInputStream fis=null;
 
+
         try
-            {/*
+        {/*
                 db=dbf.newDocumentBuilder();
                 FileInputStream fis=openFileInput("database.xml");
                 doc=db.parse(fis);
@@ -127,46 +127,47 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
 */
-                StringBuilder sb= new StringBuilder();
-                Factory=XmlPullParserFactory.newInstance();
-                Factory.setNamespaceAware(true);
-                XmlPullParser xpp= Factory.newPullParser();
-                fis=openFileInput("database.xml");
-                xpp.setInput(fis,null);
-                int eventType=xpp.getEventType();
-                while(eventType!=XmlPullParser.END_DOCUMENT)
-                {
-                    if(eventType==XmlPullParser.START_DOCUMENT)
+            StringBuilder sb= new StringBuilder();
+            Factory=XmlPullParserFactory.newInstance();
+            Factory.setNamespaceAware(true);
+            XmlPullParser xpp= Factory.newPullParser();
+            fis=openFileInput("database.xml");
+            Toast.makeText(this, "File read",Toast.LENGTH_LONG).show();
+            xpp.setInput(fis,null);
+            int eventType=xpp.getEventType();
+            while(eventType!=XmlPullParser.END_DOCUMENT)
+            {
+                if(eventType==XmlPullParser.START_DOCUMENT)
                     sb.append("[START]");
-                    else if(eventType==XmlPullParser.START_TAG)
-                        sb.append("\n<"+xpp.getName()+">");
-                    else if(eventType==XmlPullParser.END_TAG)
-                        sb.append("</"+xpp.getName()+">");
-                    else if(eventType==XmlPullParser.TEXT)
-                        sb.append(xpp.getText());
+                else if(eventType==XmlPullParser.START_TAG)
+                    sb.append("\n<"+xpp.getName()+">");
+                else if(eventType==XmlPullParser.END_TAG)
+                    sb.append("</"+xpp.getName()+">");
+                else if(eventType==XmlPullParser.TEXT)
+                    sb.append(xpp.getText());
 
-                    eventType=xpp.next();
+                eventType=xpp.next();
 
-
-                }
-                fileStream fs= new fileStream();
-                fs.set_string(sb.toString());
 
             }
-            catch (IOException e)
-            {
-                e.printStackTrace();
-            }
-            catch(XmlPullParserException e)
-            {
-                e.printStackTrace();
-            }
-            finally {
+            fileStream fs= new fileStream();
+            fs.set_string(sb.toString());
+
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+        catch(XmlPullParserException e)
+        {
+            e.printStackTrace();
+        }
+        finally {
             if(fis!=null){
                 try {
                     fis.close();
-                    }
-                    catch (IOException e){
+                }
+                catch (IOException e){
                     e.printStackTrace();
                 }
             }
@@ -174,6 +175,16 @@ public class MainActivity extends AppCompatActivity {
 
         Intent n  = new Intent(this,Parsing_Xml_File.class);
         startActivity(n);
+    }
+
+    public void readXml(View view)
+    {/*
+        Document doc=null;
+        DocumentBuilderFactory dbf=DocumentBuilderFactory.newInstance();
+        DocumentBuilder db;
+        */
+        Toast.makeText(this, "HIIII",Toast.LENGTH_LONG).show();
+
 
     }
     public void gotoLogin(View view){

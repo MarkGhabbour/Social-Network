@@ -11,6 +11,7 @@ public class Parsing_Xml_File extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_parsing_xml_file  );
+        txt();
     }
     TextView txt= (TextView) findViewById(R.id.textView);
     public void txt()
