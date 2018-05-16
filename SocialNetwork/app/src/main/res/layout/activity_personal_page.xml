@@ -35,16 +35,27 @@
             />
 
         <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add friends"
+        android:onClick="show_non_friends"
+        android:textAllCaps="false"
+        android:background="@color/colorPrimary"
+        android:textColor="#FFF"
+        android:textSize="20sp"
+        android:layout_margin="16sp"
+        />
+        <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Add friends"
-            android:onClick="show_non_friends"
+            android:text="People You May Know"
+            android:onClick="getPeopleYouMayKnow"
             android:textAllCaps="false"
             android:background="@color/colorPrimary"
             android:textColor="#FFF"
             android:textSize="20sp"
             android:layout_margin="16sp"
-           />
+            />
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

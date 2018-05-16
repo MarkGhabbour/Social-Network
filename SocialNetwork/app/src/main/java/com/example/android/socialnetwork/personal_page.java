@@ -95,4 +95,13 @@ public class personal_page extends AppCompatActivity {
         Intent n = new Intent(this,myWall.class);
         startActivity(n);
     }
+    public void getPeopleYouMayKnow(View view)
+    {
+        Intent intent = new Intent(this , PeopleYouMayKnow.class);
+        startActivity(intent);
+
+
+
+    }
+
 }

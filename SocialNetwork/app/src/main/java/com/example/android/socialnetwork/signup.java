@@ -69,8 +69,9 @@ public class signup extends AppCompatActivity {
             long result = userdb.insert(userEntry.TABLE_NAME,null,contentvalues);
             Intent personal_page = new Intent(this,personal_page.class);
 
-                Toast.makeText(this, "Data inserted", Toast.LENGTH_LONG).show();
-                startActivity(personal_page);
+            Toast.makeText(this, "Data inserted", Toast.LENGTH_LONG).show();
+            startActivity(personal_page);
+            contentvalues.put(userEntry.COULMN_Ids_liked_posts , "");
         }
 
         SQLiteDatabase ins = userDb.getWritableDatabase();
